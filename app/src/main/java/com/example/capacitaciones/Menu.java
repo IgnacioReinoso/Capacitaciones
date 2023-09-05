@@ -24,10 +24,8 @@ import java.util.Map;
 
 public class Menu extends AppCompatActivity {
     private RecyclerView rv1;
-    private ArrayList<DatosCursos> lista_cursos;
-
-    Adapter Adapter;
-
+    ArrayList<DatosCursos> lista_cursos = new ArrayList<DatosCursos>();
+    Adapter adapter = new Adapter(this ,lista_cursos);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +40,9 @@ public class Menu extends AppCompatActivity {
         rv1 = findViewById(R.id.recyclerView);
         rv1.setLayoutManager(new GridLayoutManager(this,1));
 
-        lista_cursos = new ArrayList<>();
-
         CargarCursos(rut_usuario);
 
-        Adapter = new Adapter(Menu.this ,lista_cursos);
-        rv1.setAdapter(Adapter);
-
-        System.out.println("lISTA DE WEAS"+lista_cursos);
+        rv1.setAdapter(adapter);
 
     }
 
@@ -61,30 +54,24 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try{
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray = jsonObject.getJSONArray("Cursos");
-
+                    JSONArray jsonArray = new JSONArray(response);
                     for(int i = 0; i < jsonArray.length(); i++) {
-
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        lista_cursos.add(
-                                new DatosCursos(
-                                    jsonObject1.getString("id_curso"),
-                                        jsonObject1.getString("nombre_curso"),
-                                        jsonObject1.getString("imagen_curso"),
-                                        jsonObject1.getString("link_video"),
-                                        jsonObject1.getString("link_documento"),
-                                        jsonObject1.getString("link_documento2"),
-                                        jsonObject1.getString("link_documento3"),
-                                        jsonObject1.getString("link_documento4")
-                                )
-                        );
+                        DatosCursos datosCursos = new DatosCursos(
+                                jsonObject1.getString("id_curso"),
+                                jsonObject1.getString("nombre_curso"),
+                                jsonObject1.getString("imagen_curso"),
+                                jsonObject1.getString("link_video"),
+                                jsonObject1.getString("link_documento"),
+                                jsonObject1.getString("link_documento2"),
+                                jsonObject1.getString("link_documento3"),
+                                jsonObject1.getString("link_documento4"));
+                        lista_cursos.add(datosCursos);
                     }
-                    Adapter = new Adapter(Menu.this ,lista_cursos);
-                    rv1.setAdapter(Adapter);
+                    adapter.notifyDataSetChanged();
 
                 }catch (JSONException e) {
-                   e.printStackTrace();
+                    e.printStackTrace();
                 }
 
             }
@@ -97,7 +84,7 @@ public class Menu extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> parametros=new HashMap<String,String>();
-                parametros.put("rut",rut_usuario.toString());
+                parametros.put("rut",rut_usuario);
                 return parametros;
             }
         };

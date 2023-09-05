@@ -57,6 +57,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
             super(itemView);
             txt_curso = itemView.findViewById(R.id.txt_curso);
             iniciar = itemView.findViewById(R.id.btn_curso);
+            iniciar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
 
         }
     }
