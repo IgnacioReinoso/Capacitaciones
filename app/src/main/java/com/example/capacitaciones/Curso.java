@@ -2,13 +2,12 @@ package com.example.capacitaciones;
 
 import android.app.DownloadManager;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -24,51 +23,32 @@ public class Curso extends AppCompatActivity {
         setContentView(R.layout.activity_curso);
 
         vv1=findViewById(R.id.videoView);
-        play=findViewById(R.id.btn_play);
-        retro=findViewById(R.id.btn_retroceder);
-        tiempo=findViewById(R.id.txt_tiempo);
         descargar=findViewById(R.id.btn_descargar);
 
+        Bundle datos=getIntent().getExtras();
+        String id_curso=datos.getString("id_curso");
+        String nombre_curso=datos.getString("nombre_curso");
+        String link_video=datos.getString("link_video");
+        String documento1=datos.getString("documento1");
+        String documento2=datos.getString("documento2");
+        String documento3=datos.getString("documento3");
+        String documento4=datos.getString("documento4");
 
-        int orientation=getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE){
-            getSupportActionBar().hide();
-        }else{
-            getSupportActionBar().show();
-        }
-        //ubicacion del video de la capacitacion
-        vv1.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.video));
+        System.out.println(id_curso);
+        System.out.println(nombre_curso);
+        System.out.println(link_video);
+        System.out.println(documento1);
+        System.out.println(documento2);
+        System.out.println(documento3);
+        System.out.println("Documnento numero 4" + ""+documento4);
 
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean pause = false;
-                if(vv1.isPlaying()){
-                    vv1.pause();
-                    pause= true;
-                } else if (pause == true) {
-                    vv1.start();
-                    pause=false;
-                }else {
-                    vv1.start();
-                }
-            }
-        });
 
-        retro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int posicionActual=vv1.getCurrentPosition();
-                vv1.seekTo(posicionActual-5000);
-            }
-        });
+        vv1.setVideoURI(Uri.parse(link_video));
 
-        descargar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DescargarPDF();
-            }
-        });
+        MediaController mediaController = new MediaController(this);
+        vv1.setMediaController(mediaController);
+        mediaController.setAnchorView(vv1);
+
 
     }
     public void DescargarPDF(){

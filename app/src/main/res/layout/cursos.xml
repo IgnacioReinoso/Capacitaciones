@@ -17,13 +17,14 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="#303030">
 
         <Button
             android:id="@+id/btn_curso"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
@@ -49,11 +50,11 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
-            android:text="Nombre Curso"
+            android:text="existe la posibilidad que el usuario tenga otro co"
             android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textSize="24sp"
+            android:textColor="#FFFFFF"
+            android:textIsSelectable="false"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_curso"
