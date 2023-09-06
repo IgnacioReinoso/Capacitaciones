@@ -2,9 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/btn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgraund_gradient"
     tools:context=".Curso">
 
     <VideoView
@@ -29,29 +29,20 @@
         app:layout_constraintTop_toBottomOf="@+id/videoView" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/txt_documento1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Documento"
-        app:layout_constraintEnd_toStartOf="@+id/btn_descargar"
+        android:text="Documento 1"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <Button
-        android:id="@+id/btn_descargar"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:text="Descargar"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/txt_documento2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -60,19 +51,10 @@
         android:inputType="text"
         android:text="Documento 2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
-
-    <Button
-        android:id="@+id/btn_descargar2"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:text="Descargar"
-        app:layout_constraintStart_toEndOf="@+id/editTextText"
-        app:layout_constraintTop_toBottomOf="@+id/btn_descargar" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_documento1" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/txt_documento3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -81,19 +63,10 @@
         android:inputType="text"
         android:text="Documento 3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
-
-    <Button
-        android:id="@+id/btn_descargar3"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:text="Descargar"
-        app:layout_constraintStart_toEndOf="@+id/editTextText2"
-        app:layout_constraintTop_toBottomOf="@+id/btn_descargar2" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_documento2" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/txt_documento4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -102,15 +75,46 @@
         android:inputType="text"
         android:text="Documento 4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_documento3" />
 
-    <Button
-        android:id="@+id/btn_descargar4"
-        android:layout_width="wrap_content"
+    <ImageButton
+        android:id="@+id/btn_descargar"
+        android:layout_width="50dp"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
-        android:text="Descargar"
-        app:layout_constraintStart_toEndOf="@+id/editTextText3"
-        app:layout_constraintTop_toBottomOf="@+id/btn_descargar3" />
+        android:scaleType="fitStart"
+        app:layout_constraintStart_toEndOf="@+id/txt_documento1"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/descargarpdf" />
+
+    <ImageButton
+        android:id="@+id/btn_descargar4"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitStart"
+        app:layout_constraintStart_toEndOf="@+id/txt_documento4"
+        app:layout_constraintTop_toBottomOf="@+id/btn_descargar3"
+        app:srcCompat="@drawable/descargarpdf" />
+
+    <ImageButton
+        android:id="@+id/btn_descargar3"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitStart"
+        app:layout_constraintStart_toEndOf="@+id/txt_documento3"
+        app:layout_constraintTop_toBottomOf="@+id/btn_descargar2"
+        app:srcCompat="@drawable/descargarpdf" />
+
+    <ImageButton
+        android:id="@+id/btn_descargar2"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitStart"
+        app:layout_constraintStart_toEndOf="@+id/txt_documento2"
+        app:layout_constraintTop_toBottomOf="@+id/btn_descargar"
+        app:srcCompat="@drawable/descargarpdf" />
 
 </android.support.constraint.ConstraintLayout>

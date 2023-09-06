@@ -6,16 +6,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.MediaController;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 public class Curso extends AppCompatActivity {
     VideoView vv1;
-    Button play,retro,descargar;
-    TextView tiempo;
+    ImageButton descargar,descargar2,descargar3,descargar4;
+    EditText txt_documento1,txt_documento2,txt_documento3,txt_documento4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,13 @@ public class Curso extends AppCompatActivity {
 
         vv1=findViewById(R.id.videoView);
         descargar=findViewById(R.id.btn_descargar);
+        descargar2=findViewById(R.id.btn_descargar2);
+        descargar3=findViewById(R.id.btn_descargar3);
+        descargar4=findViewById(R.id.btn_descargar4);
+        txt_documento1=findViewById(R.id.txt_documento1);
+        txt_documento2=findViewById(R.id.txt_documento2);
+        txt_documento3=findViewById(R.id.txt_documento3);
+        txt_documento4=findViewById(R.id.txt_documento4);
 
         Bundle datos=getIntent().getExtras();
         String id_curso=datos.getString("id_curso");
@@ -50,12 +58,57 @@ public class Curso extends AppCompatActivity {
         mediaController.setAnchorView(vv1);
 
 
+        if(documento1.length()==0){
+            txt_documento1.setVisibility(View.INVISIBLE);
+            descargar.setVisibility(View.INVISIBLE);
+        }
+        if (documento2.length()==0) {
+            txt_documento2.setVisibility(View.INVISIBLE);
+            descargar2.setVisibility(View.INVISIBLE);
+        }
+        if (documento3.length()==0) {
+            txt_documento3.setVisibility(View.INVISIBLE);
+            descargar3.setVisibility(View.INVISIBLE);
+        }
+        if (documento4.length()==0) {
+            txt_documento4.setVisibility(View.INVISIBLE);
+            descargar4.setVisibility(View.INVISIBLE);
+        }
+
+
+        descargar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DescargarPDF(documento1);
+            }
+        });
+        descargar2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DescargarPDF(documento2);
+            }
+        });
+        descargar3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DescargarPDF(documento3);
+            }
+        });
+        descargar4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DescargarPDF(documento4);
+            }
+        });
+
+
+
+
     }
-    public void DescargarPDF(){
+    public void DescargarPDF(String url){
 
         System.out.println("ENTRO AL METODO DESCARGA");
 
-        String url= "https://drive.google.com/uc?id=1LECvRAQMgq9ffGu3mmEIEOqP7gNQl587&export=download";
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
         request.setTitle("Descargando Archivo");
